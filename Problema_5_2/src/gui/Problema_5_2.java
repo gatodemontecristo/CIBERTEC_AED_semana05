@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import semana_05.ArregloSueldos;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -75,6 +78,11 @@ public class Problema_5_2 extends JFrame implements ActionListener {
 		txtS.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		scrollPane.setViewportView(txtS);
 	}
+	
+//  Declaraciï¿½n global
+	ArregloSueldos as = new ArregloSueldos();
+	
+	
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnGenerar) {
 			actionPerformedBtnGenerar(arg0);
@@ -87,16 +95,41 @@ public class Problema_5_2 extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnListar(ActionEvent arg0) {
+		/**
+		 * Visualiza los nï¿½meros del arreglo
+		 */			
+ 		txtS.setText("");
+ 	 	for (int i=0; i<as.tamanio(); i++){
+ 			imprimir("n[" + i + "] :  " + as.obtener(i));
+ 	 	}
 	}
 	protected void actionPerformedBtnReportar(ActionEvent arg0) {
+		/**
+		 * Muestra un reporte del arreglo
+         */	
+		imprimir();    	
+    	imprimir("Tamaï¿½o total del arreglo :  " + as.tamanio());    	
+    	imprimir("Promedio de todos los sueldos :  " + as.sueldoPromedio());
+    	imprimir("Sueldo mayor :  " + as.sueldoMayor());
+    	imprimir("Sueldo menor :  " + as.sueldoMenor());
+    	imprimir("Cantidad mayores al promedio  :  " + as.cantMayoresSueldoPromedio());
+    	imprimir("Cantidad menores al promedio :  " + as.cantMenoresSueldoPromedio());
+    	imprimir("Posiciï¿½n del segundo mayor 850 :  " + as.posSegundoSueldoMayorAlMinimo());
+    	imprimir("Posiciï¿½n del ï¿½ltimo mayor 850:  " + as.posUltimoSueldoMenorAlMinimo());
 	}
 	protected void actionPerformedBtnGenerar(ActionEvent arg0) {
+		/**
+		 * Remplaza los nï¿½meros actuales por otros aleatorios 
+         */		
+		as.generarSueldos();
+		imprimir();
+    	imprimir("Los nï¿½meros han sido cambiados. Pulse [Listar]");
 	}
-	//  Métodos tipo void (sin parámetros)
+	//  Mï¿½todos tipo void (sin parï¿½metros)
 	void imprimir() {
 		imprimir("");
 	}
-	//  Métodos tipo void (con parámetros)
+	//  Mï¿½todos tipo void (con parï¿½metros)
 	void imprimir(String s) {
 		txtS.append(s + "\n");
 	}
