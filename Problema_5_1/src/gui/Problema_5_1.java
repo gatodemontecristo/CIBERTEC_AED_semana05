@@ -1,7 +1,7 @@
 package gui;
 
 import java.awt.EventQueue;
-
+import semana_05.ArregloEdades;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -75,6 +75,8 @@ public class Problema_5_1 extends JFrame implements ActionListener {
 		txtS.setFont(new Font("Monospaced", Font.PLAIN, 13));
 		scrollPane.setViewportView(txtS);
 	}
+	ArregloEdades ae = new ArregloEdades();
+	
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == btnGenerar) {
 			actionPerformedBtnGenerar(arg0);
@@ -87,16 +89,31 @@ public class Problema_5_1 extends JFrame implements ActionListener {
 		}
 	}
 	protected void actionPerformedBtnListar(ActionEvent arg0) {
+		txtS.setText("");
+ 	 	for (int i=0; i<ae.tamanio(); i++){
+ 			imprimir("n[" + i + "] :  " + ae.obtener(i));
+ 	 	}
 	}
 	protected void actionPerformedBtnReportar(ActionEvent arg0) {
+		imprimir();    	
+    	imprimir("edad promedio             :  " + ae.edadPromedio());
+    	imprimir("edad mayor                :  " + ae.edadMayor());  
+    	imprimir("edad menor                :  " + ae.edadMenor()); 
+    	imprimir("cantidad mayores          :  " + ae.cantMayoresEdad()); 
+    	imprimir("cantidad menores          :  " + ae.cantMenoresEdad()); 
+    	imprimir("primera edad adolescente  :  " + ae.posPrimeraEdadAdolescente());
+    	imprimir("ultima edad adolescente   :  " + ae.posUltimaEdadAdolescente());
 	}
 	protected void actionPerformedBtnGenerar(ActionEvent arg0) {
+		ae.generarEdades();
+		imprimir();
+    	imprimir("Las edades han sido cambiadas. Pulse [Listar]");
 	}
-	//  Métodos tipo void (sin parámetros)
+	//  MÃ©todos tipo void (sin parÃ¡metros)
 	void imprimir() {
 		imprimir("");
 	}
-	//  Métodos tipo void (con parámetros)
+	//  MÃ©todos tipo void (con parÃ¡metros)
 	void imprimir(String s) {
 		txtS.append(s + "\n");
 	}
